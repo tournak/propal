@@ -1,41 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background-color: #1e1e1e;
     color: #e0e0e0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
 }
 
 header {
+    width: 100%;
+    height: 60px;
     background-color: #2d2d2d;
     border-bottom: 1px solid #333333;
-    padding: 15px;
-    text-align: center;
-    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.25em;
-    flex-shrink: 0;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }
 
 .container {
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    position: fixed;
     background-color: #1e1e1e;
+    top: 60px; /* header spacing */
+    bottom: 75px; /* footer spacing */
+    left: 0;
+    right: 0;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    min-height: 60px;
+    position: relative;
+}
+
+.sidebar-header h2 {
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.header-spacer {
+    width: 24px;
+    height: 24px;
+}
+
+.collapse-sidebar {
+    background-color: #444;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+    z-index: 1;
+}
+
+.collapse-sidebar:hover {
+    background-color: #555;
+}
+
+.collapsed {
+    display: none !important;
+}
+
+.left-sidebar {
+    width: 25%;
+    border-right: 1px solid #333;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#task-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #2a2a2a;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #3a3a3a;
+}
+
+.task-item:last-child {
+    margin-bottom: 10px;
+}
+
+.task-input {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 0.95em;
+    outline: none;
+}
+
+.delete-task {
+    background-color: #157300;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.delete-task:hover {
+    background-color: #22b002;
+}
+
+#new-task-input {
+    width: 100%;
+    padding: 12px 10px;
+    background-color: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    color: white;
+    border-radius: 8px;
+    outline: none;
+    font-size: 0.95em;
+}
+
+#new-task-input::placeholder {
+    color: #bbb;
+}
+
+#add-task-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #730030;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 8px;
+    transition: background-color 0.2s;
+}
+
+#add-task-button:hover {
+    background-color: #B9004B;
+}
+
+.right-sidebar {
+    width: 25%;
+    border-left: 1px solid #333;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.right-sidebar .sidebar-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-sidebar .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
-    width: 50%;
-    margin: 0 auto;
+}
+
+#core-memories {
+    width: 100%;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #3a3a3a;
+    resize: none;
+    font-size: 0.95em;
+    outline: none;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#core-memories::placeholder {
+    color: #aaa;
 }
 
 .messages {
-    flex-grow: 1;
-    padding: 20px;
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
+    width: 50%;
+    overflow-y: auto;
+    padding: 20px;
     gap: 10px;
 }
 
@@ -60,34 +250,60 @@ header {
     border-bottom-left-radius: 2px;
 }
 
-p {
-    padding: 0;
-    margin: 0;
+.message p {
+    padding-bottom: 10px;
 }
 
-ul {
-    margin-top: 5px;
-    margin-bottom: 5px;
+.message p:last-child {
+    padding-bottom: 0;
 }
 
-.thinking {
-    align-self: flex-start;
-    opacity: 0.7;
-    font-style: italic;
+.message ul {
+    margin: 0 15px;
+}
+
+.message ul li {
+    margin: 5px;
 }
 
 footer {
     display: flex;
-    justify-content: center;
-    flex-shrink: 0;
+    align-items: center;
     background-color: #2d2d2d;
     border-top: 1px solid #333333;
-    padding: 15px;
+    width: 100%;
+    height: 75px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.footer-left, .footer-center, .footer-right {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.footer-left {
+    width: 25%;
+    justify-content: flex-start;
+}
+
+.footer-center {
+    width: 50%;
+    justify-content: center;
+}
+
+.footer-right {
+    width: 25%;
+    justify-content: flex-end;
 }
 
 .send-message {
     display: flex;
-    width: 50%;
+    width: 100%;
 }
 
 #message-input {
@@ -120,4 +336,143 @@ footer {
 
 #send-button:hover {
     background-color: #B9004B;
+}
+
+#productivity-guide {
+    background-color: #444;
+    color: white;
+    padding: 12px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    font-size: 0.95em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+#productivity-guide:hover {
+    background-color: #555;
+    border-color: #777;
+}
+
+#clear-session {
+    background-color: #444;
+    color: white;
+    padding: 12px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    font-size: 0.95em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+#clear-session:hover {
+    background-color: #555;
+    border-color: #777;
+}
+
+#pomodoro-container h2 {
+    margin-bottom: 10px;
+}
+
+#timer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#timer-container button {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    background-color: #730030;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    font-size: 1.25rem;
+}
+
+#timer-container button:hover {
+    background-color: #B9004B;
+}
+
+#timer-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #555;
+}
+
+#preset-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#preset-buttons button {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: #730030;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    font-size: 1rem;
+}
+
+/* Typing animation */
+
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background-color: #777;
+    border-radius: 50%;
+    display: inline-block;
+    animation: typingBlink 1.4s infinite both;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingBlink {
+    0% {
+        opacity: 0.2;
+        transform: translateY(0);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+    100% {
+        opacity: 0.2;
+        transform: translateY(0);
+    }
 }

@@ -8,28 +8,67 @@
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-    <header>ProPal - Your Productivity Assistant</header>
+<header>ProPal - Your Productivity Assistant</header>
 
-    <div class="container">
-        <div class="messages">
-            <div class="message bot-message">Hello! I am ProPal, your productivity assistant. How can I help you today?</div>
+<div class="container">
+    <div class="sidebar left-sidebar">
+        <div class="sidebar-header">
+            <div class="header-spacer"></div>
+            <h2>Current Tasks</h2>
+            <button class="collapse-sidebar" data-side="left">▲</button>
+        </div>
+        <div class="sidebar-content">
+            <ul id="task-list"></ul>
+            <input type="text" id="new-task-input" placeholder="Add new task">
+            <button id="add-task-button">Add Task</button>
         </div>
     </div>
+    <div class="messages"></div>
+    <div class="sidebar right-sidebar">
+        <div class="sidebar-header">
+            <button class="collapse-sidebar" data-side="right">▲</button>
+            <h2>Core Memories</h2>
+            <div class="header-spacer"></div>
+        </div>
+        <div class="sidebar-content">
+            <div>
+                <textarea id="core-memories" rows="10"
+                          placeholder="Write down anything I should never forget"></textarea>
+            </div>
+            <div id="pomodoro-container">
+                <h2>Pomodoro Timer</h2>
 
-    <footer>
+                <div id="timer-container">
+                    <button id="start-pause">▶</button>
+                    <div id="timer-display" contenteditable="true">25:00</div>
+                    <button id="reset-timer">↻</button>
+                </div>
+
+                <div id="preset-buttons">
+                    <button data-min="25">Pomodoro (25m)</button>
+                    <button data-min="5">Break (5m)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-left">
+        <button id="productivity-guide">? Productivity Guide</button>
+    </div>
+    <div class="footer-center">
         <div class="send-message">
             <input type="text" id="message-input" placeholder="Ask ProPal" autofocus>
             <button id="send-button">➤</button>
         </div>
-    </footer>
+    </div>
+    <div class="footer-right">
+        <button id="clear-session">⟳ Clear Session</button>
+    </div>
+</footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
-
-
-
-
-
-
