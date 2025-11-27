@@ -47,7 +47,14 @@ function saveChatToStorage() {
 function loadChatFromStorage() {
     const saved = localStorage.getItem("propalChat");
     if (!saved) {
-        addMessage("Hello! I am ProPal, your productivity assistant. How can I help you today?")
+        addMessage(
+            "Hello! I’m ProPal, your productivity assistant.<br><br>" +
+            "On the left, you can add your current tasks.<br>" +
+            "On the right, you can add anything important you want me to remember.<br>" +
+            "In the bottom-right is a timer used for task scheduling.<br>" +
+            "You can click the Productivity Guide anytime for information about techniques.<br><br>" +
+            "How can I help you today?"
+        )
         return;
     }
 
